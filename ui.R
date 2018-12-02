@@ -5,7 +5,7 @@ shinyUI(
     theme = shinytheme("darkly"),
     "Name",
     
-    # map panel
+    # panel
     tabPanel(
       h4("Tab name"),
       titlePanel("Title"),
