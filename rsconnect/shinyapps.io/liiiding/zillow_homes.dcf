@@ -1,0 +1,13 @@
+name: zillow_homes
+title: zillow_homes
+username:
+account: liiiding
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 604563
+bundleId: 1742328
+url: https://liiiding.shinyapps.io/zillow_homes/
+when: 1544010849.80349
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md|scripts/map.R
