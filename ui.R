@@ -16,22 +16,23 @@ shinyUI(
         h2("Overview"),
          p("The purpose behind creating this interactive Shiny platform is to allow potential home-buyers to explore various 
            data regarding homes in the United States according to the states they are interested in. Our app provides insight on the highest median 
-           value per squarefoot for all homes in every state by year, the comparison of house prices and the home value index 
+           value per squarefoot for all homes in every state by year, a comparison of house prices and the home value index 
            between two states, and the home value index trends across all states by year. As the home values and prices are rapidly increasing in the 
            Seattle area, we were inspired to examine data regarding homes all across the country and look for trends."),
          h2("Data"),
          p("The various datsets used in this app were all retrieved from", zillow_url, ". These data sets from Zillow Research contain data from 1996 to 2018; however, 
-           for the sake of relevance, we have only included data ranging from 2007 to 2018. There are two categories that these datasets belong to: Home Values 
+           for the sake of relevance, we have only included data ranging from 2007 to 2018 in all analyses except for the trends across time. There are two categories that these datasets belong to: Home Values 
            and Home Listings and Sales. According to Zillow's website, the Zillow Home Value Index (ZHVI) is 'a smoothed, seasonally adjusted measure of the median estimated 
           home value across a given region and housing type. It is a dollar-denominated alternative to repeat-sales indices.' The Median Home Values per Sqft for All Homes by State,
-          the Home Value Index of the Current Month, and the Home Value Index of All Homes dataset belong to the Home Value Index category and contain data for every state. 
+          the Home Value Index of the Current Month, the Percentage of Home Values Increasing/Decreasing, and the Home Value Index of All Homes dataset belong to the Home Value Index category and contain data for every state. 
            The Sales Prices dataset came from the Home Listings and Sales category and includes the most recent month's data for each state."),
         h2("Audience and Questions"),
-        p("Our targeted users include anyone who is looking to purchase a home in the near future or investors. Our app includes data that is relevant to those who want to compare the sales
+        p("Our targeted users include investors and anyone who is looking to purchase a home in the near future. Our app includes data that is relevant to those who want to compare the sales
            prices or home value index of two states. This can be integral in helping users decide where to purchase a new home. For example, users may ask 'How did sale prices between California 
           and Washington differ in August 2018?' Our app also includes data of the highest median value per squarefoot per state. This allows the users to see the highest home value of the year in every state.
           For example, users may want to gage the difference in home values among states and view changes over the years to see where investments can pay off. Additionally, our app displays a map to give the users an idea of the average home value index
-          per state over the years. This can answer any questions users may have regarding specific regions of the United States, as it is easy to compare all states at once.
+          per state over the years. This can answer any questions users may have regarding specific regions of the United States, as it is easy to compare all states at once.  Finally, we have included a way to look at home value trends across,
+          which can assist investors in trying to make predictions for future investments.
            For future analysis of similar data, we can expand our app to benefit those who are not only interested in comparing among states, but also among more specific categories, such as counties or cities.")
         ) # End of mainPanel
     ), # End of Overview tabPanel
@@ -132,5 +133,50 @@ shinyUI(
        ) # End of mainPanel
      ) # End of sidebarLayout
    ) # End of tabPanel
+   ,
+   #Plots Panel
+   tabPanel(
+     h4("Home Value Trends Across Time")
+     ,
+     titlePanel("Home Value Trends")
+     ,
+     sidebarLayout(
+       sidebarPanel(
+         
+         radioButtons( "trend" , label = "Choose Trend to Examine:" ,
+                       choices = list( "All Home Values"="all" , "Home Value per Sqr. Ft."="per_sq_ft" ,
+                                       "Top Tier Home Values"="top" , "Bottom Tier Home Values"="bot" ,
+                                       "Increasing Home Values"="increase" , "Decreasing Home Values"="decrease") )
+         ,
+         selectInput( "loc" , label = "Choose Location:" , choices = list( "All"="all" ,
+                                                                           "Alabama"="Alabama" , "Alaska"="Alaska" , "Arizona"="Arizona" , "Arkansas"="Arkansas" ,
+                                                                           "California"="California" , "Colorado"="Colorado" , "Connecticut"="Connecticut" ,
+                                                                           "Delaware"="Delaware" , "Florida"="Florida" , "Georgia"="Georgia" , "Hawaii"="Hawaii" ,
+                                                                           "Idaho"="Idaho" , "Illinois"="Illinois" , "Indiana"="Indiana" , "Iowa"="Iowa" ,
+                                                                           "Kansas"="Kansas" , "Kentucky"="Kentucky" , "Louisiana"="Louisiana" ,
+                                                                           "Maine"="Maine" , "Maryland"="Maryland" , "Massachusetts"="Massachusetts" , "Michigan"="Michigan" , "Minnesota"="Minnesota" , "Mississippi"="Mississippi" , "Missouri"="Missouri" , "Montana"="Montana" ,
+                                                                           "Nebraska"="Nebraska" , "Nevada"="Nevada" , "New Hampshire"="New Hampshire" , "New Jersey"="New Jersey" , "New Mexico"="New Mexico" , "New York"="New York" , "North Carolina"="North Carolina" , "North Dakota"="North Dakota" ,
+                                                                           "Ohio"="Ohio" , "Oklahoma"="Oklahoma" , "Oregon"="Oregon" ,
+                                                                           "Pennsylvania"="Pennsylvania" , "Rhode Island"="Rhode Island" ,
+                                                                           "South Carolina"="South Carolina" , "South Dakota"="South Dakota" ,
+                                                                           "Tennessee"="Tennessee" , "Texas"="Texas" ,
+                                                                           "Utah"="Utah" ,
+                                                                           "Vermont"="Vermont" , "Virginia"="Virginia" ,
+                                                                           "Washington"="Washington" , "West Virginia"="West Virginia" , "Wisconsin"="Wisconsin" , "Wyoming"="Wyoming") )
+       )
+       ,
+       mainPanel(
+         p("These plots allow examination of home trends across time from 1996 to 2018.  
+            Using the the options to the left allow for examination of all home values, top tier home values, bottom tier home values, and the percentage of homes whose values either increased or decreased compared to the previous year.  
+            Analysis can get more specific with the ability to select individual states.  
+            This tools allows for a quick look at home values, as well as home value tendencies to rise or drop, across a large period of time.  
+            This is an ideal tool for investors looking to exptropolate current data into lucrative predictions.")
+         ,
+         br()
+         ,
+         plotOutput("trend")
+       )
+     )
+   )
   ) # End of navbarPage
 ) # End of shiny
