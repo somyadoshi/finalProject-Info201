@@ -107,9 +107,9 @@ server <- function( input , output) {
     
   df <- data.frame( years,means,stringsAsFactors = FALSE )
   return(  ggplot(data=df) + geom_point( mapping = aes( df$years,df$mean ) ) + labs( title=title,x="Year",y=y_lab) + 
-            scale_x_discrete( breaks=c(1996.07,1997.07,1998.07,1999.07,2000.07,2001.07,2002.07,2003.07,
-                                       2004.07,2005.07,2006.07,2007.07,2008.07,2009.07,2010.07,2011.07,
-                                       2012.07,2013.07,2014.07,2015.07,2016.07,2017.07,2018.07) , labels=(seq(1996,2018)) ) + y_units  )  
+            scale_x_discrete( breaks=c("X1996.07","X1997.07","X1998.07","X1999.07","X2000.07","X2001.07","X2002.07","X2003.07",
+                                       "X2004.07","X2005.07","X2006.07","X2007.07","X2008.07","X2009.07","X2010.07","X2011.07",
+                                       "X2012.07","X2013.07","X2014.07","X2015.07","X2016.07","X2017.07","X2018.07") , labels=(seq(1996,2018)) ) + y_units  )  
   
   })
 
