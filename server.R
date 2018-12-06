@@ -21,6 +21,7 @@ shinyServer(function(input, output) {
     highest_value_by_year <- mutate(highest_value_by_year, Highest_Home_Value_of_the_Year = apply(highest_value_by_year[1:50, ], 1, max)) 
     highest_value_by_year <- mutate(highest_value_by_year, State = median_value$RegionName)
     highest_value_by_year <- select(highest_value_by_year, State, Highest_Home_Value_of_the_Year)
+    highest_value_by_year <- arrange(highest_value_by_year, -Highest_Home_Value_of_the_Year)  
   })
   
   # Make the bar graph
