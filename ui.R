@@ -170,8 +170,8 @@ shinyUI(
             Using the the options to the left allow for examination of all home values, top tier home values, bottom tier home values, and the percentage of homes whose values either increased or decreased compared to the previous year.  
             Analysis can get more specific with the ability to select individual states.  
             This tools allows for a quick look at home values, as well as home value tendencies to rise or drop, across a large period of time.  
-            This is an ideal tool for investors looking to exptropolate current data into lucrative predictions.")
-         ,
+            This is an ideal tool for investors looking to exptropolate current data into lucrative predictions.
+            (Note: Due to availability of data collection, some states do not show anything for the increasing and decreasing home values)."),
          br()
          ,
          plotOutput("trend")
